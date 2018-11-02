@@ -2,7 +2,7 @@
 
 Author: Jamesong7822
 
-Last Updated: 24/10/2018
+Last Updated: 03/11/2018
 
 ## Content Page
 
@@ -795,8 +795,7 @@ list1 = [1,2,3,-10,3.5]
 print(max(list1))
 print(min(list1))
 
-# Mean/Average can be calculated as well, with the function mean(list)
-print(mean(list1))
+
 ```
 
 #### Length (len)
@@ -857,6 +856,10 @@ sorted_data = sorted(data)
 sorted_data = sorted(data, key = x:x[2]) # reverse is False by default!
 sorted_data = sorted(data, key = x:x[2], reverse=True)
 ```
+
+#### Yield
+
+Yield is a keyword that is used like return, except that a generator is returned. 
 
 ### Tips and Tricks
 
