@@ -2,7 +2,7 @@
 
 Author: Jamesong7822
 
-Last Updated: 03/11/2018
+Last Updated: 21/12/2018
 
 ## Content Page
 
@@ -93,6 +93,57 @@ print(b%a)
 #Absolute
 print(abs(e))
 ```
+
+### Variables
+
+Variables can be named with any order of alphabets, but it is often wise to choose sensible names to act as your variable of choice.
+
+#### Assigning and Equating
+
+Variables are assigned using a single equal sign: **=** , whereas variables are crossed check if they are **EQUAL** (*equal in this case is identity of the components being crossed checked*) using 2 equal signs: **==** .
+
+```python
+# Here are some examples of variables
+a = "1" # var a is assigned to a string 1
+b = "2"
+a == "1" # Returns True
+a == b # Returns False
+type(a) == type(b) # True - why? both are strings!
+```
+
+**Equating** can be used in many ways in python - and are mostly used in functions.
+
+```python
+# Here's some trivia of equating
+# Did you know that the value of True is given 1 and False is 0?
+# Try the following!
+a = 1
+b = 0
+a == True # Returns True
+b == False # Returns True
+```
+
+#### Is, In
+
+The above 2 are less commonly used but they can be applied in the following ways, as tests for <u>identity</u> or <u>membership</u>.
+
+**Is** is essentially like an equality check (ie. a double equal sign: **==**), except it checks for the object in question. Basically, what is happening behind the scenes is python runs a function `id()` for the components being checked. `id()` returns the actual id number of the object, and you can clearly verify yourself that they are different for the example below.
+
+```python
+a = [1]
+a == [1] # True
+a is [1] # False - why? The list stored in var a is not the same OBJECT as the list we are comparing with. 
+```
+
+**In** is used to check if an element exists within a collection of elements. The following example shows the simple test.
+
+```python
+a = 1
+a in (1, 2) # True
+a in (2, 3) # False
+```
+
+
 
 ### String Methods
 
@@ -391,6 +442,30 @@ print(mystring3)
 
 Whew, that was quite a bunch to remember right? Fret not, with regular use, these methods will be at the tip of your fingertips :D
 
+#### List Comprehensions
+
+The python list comprehensions are an easy way to apply a [function](#Function) or filter to a list of items. 
+
+Here's some examples of using list comprehensions:
+
+```python
+squares = [x**2 for x in range(10)]
+# [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# How do you think the following conditional filter works?
+uneven_squares = [x**2 for x in range(10) if x % 2] 
+# [1, 9, 25, 49, 81]
+
+# You can achieve the same result with a for loop as well (below)
+uneven_squares = []
+for i in range(10):
+    if i % 2:
+        uneven_squares.append(x**2)
+        
+```
+
+
+
 ### Tuples
 
 Tuples are basically just like lists, except that the data you store within tuples are immutable!
@@ -414,6 +489,17 @@ Similar to lists, you can retrieve elements within tuples by calling their index
 mytuple = (1,2,3,4,5)
 print(mytuple[2]) # This would print 3, the element at index 2!
 ```
+
+You can also do the following:
+
+```python
+mytuple = (1, (2, 3))
+a, b = mytuple
+# a = 1
+# b = (2, 3)
+```
+
+This is called unpacking and can also be done for [lists](#Lists).
 
 ##### Concatenation
 
@@ -501,6 +587,34 @@ mydict = {"a": "Good Morning",
 		 
 # Let's say you want to get the string "Good Morning"
 print(mydict["a"])
+```
+
+#### Dictionary Comprehension
+
+This is similar to [list comprehensions](#List Comprehensions). Here's how you set up a dictionary comprehension.
+
+```python
+{x: x ** 2 for x in range(10)}
+# {0: 0, 1:1, 2:4, 3:9, 4:16, 5:25, 6:36, 7:49, 8:64, 9:81}
+
+# Applying conditional filters as well
+{x: x ** 2 for x in range(10) if x % 2}
+# {1:1, 3:9, 5:25, 7:49, 9:81}
+```
+
+One can also mix the 2 (list n dict), to give a dictionary of list or a list of dictionaries. Try on your own!
+
+The following gives a skeleton of how the above described nested structure would be like:
+
+```python
+# Dictionary of lists
+dict_of_lists = {1: [1], 2: [1, [2, 3], 4]}
+# Try:
+{x: x ** 2 [y for y in range(x)] for x in range(5)}
+
+# List of Dictionaries
+list_of_dicts = [{1: 1, 2: 2},
+{3: 3, 4: 4}]
 ```
 
 
@@ -680,6 +794,22 @@ for num in num_list:
     if num >= 0 or num % 2 == 0:
 		positive_or_even.append(num)        
 ```
+
+#### NOT
+
+Yeah, as the term implies, this basically just reverses the meaning of your statements.
+
+```python
+mylist = [1, 2, 3]
+query = 4
+if query not in mylist:
+    print ("{} is not in mylist".format(query))
+    
+some_bool = False
+print (not some_bool) # prints True
+```
+
+
 
 ## Functions
 
@@ -862,6 +992,39 @@ sorted_data = sorted(data, key = x:x[2], reverse=True)
 Yield is a keyword that is used like return, except that a generator is returned. 
 
 ### Tips and Tricks
+
+#### Argument Unpacking
+
+Let's consider the following function:
+
+```python
+def myfunc(*args):
+	for arg in args:
+		print (arg)
+        
+# You will get prints for each input you send to the function. 
+```
+
+The method of unpacking also applies in [lists](#Lists) or [tuples](#Tuples) or [dictionaries](#Dictionary).
+
+For example, 
+
+```python
+# List
+mylist = [1, 2, 3]
+a, b, c = mylist # a = 1, b = 2, c = 3
+a, *b = mylist a = 1, b = [2, 3]
+
+# Tuple
+mytuple = 1,2,3,4 # Note you don't need to specify parantheses for tuple declaration
+a, b, c, d = mytuple # a=1, b=2, c=3, d=4
+a, *b = mytuple # a = 1, b = [2, 3, 4] # Note that it returns as a list
+
+# Dictionary
+mydict = {"1": 1, "2": 2, "3":3}
+a, b, c = mydict # a = "1", b = "2", c = "3"
+a, *b = mydict # a = "1", b = ["2", "3"]
+```
 
 #### Error Handling
 
