@@ -1,12 +1,8 @@
-# Python Introductory Course!
+#Python Introductory Course!
 
 Author: Jamesong7822
 
-Last Updated: 21/12/2018
-
-## Content Page
-
-[TOC]
+Last Updated: 28/12/2018
 
 ## Data Types
 
@@ -30,33 +26,35 @@ print(type("1")) #String
 print(type(True)) #Bool
 ```
 
-Converting between the different data types are easy too! BUT the data must match the requirements of the desired form of conversion as well!
+Converting between the different data types are easy too!
 
 ```python
-#Converting from string to integer
+# Converting from string to integer
 mystring = "1"
 myinteger = int(mystring)
 print(type(myinteger))
 
-#Converting from integer to string
+# Converting from integer to string
 myinteger = 1
 mystring = str(myinteger)
 print(type(mystring))
 
-#Converting from float to integer
+# Converting from float to integer
 myfloat = 1.0
 myinteger = int(myfloat)
 print(type(myinteger))
-#BUT BE CAREFUL!
-myfloat = 1.1
-myinteger = int(myfloat) #Why does this give an erorr?
 
-#Converting from integer to float
+# Converting from integer to float
 myinteger = 1
 myfloat = float(myinteger)
 print(type(myfloat))
 
-#TRY the other converts on your own! :D
+# But of course converting from string 
+# characters to inters are not supported
+mystring2 = "one" # Python cannot convert this to integer 1
+myinteger2 = int(mystring2) # Throws error
+
+# TRY the other converts on your own! :D
 ```
 
 ### Arithmetic Operations
@@ -153,8 +151,10 @@ a in (2, 3) # False
 mystring = "I am a boy!"
 print(mystring[:5]) # Slice from start of string till index 4
 print(mystring[5:]) # Slice from index 5 till end of string
+
 # What do u think this does?
 print(mystring[::-1])
+
 # Skipping in String Slicing
 # String slicing can do step slicing as well
 # Here's how to do it!
@@ -188,11 +188,11 @@ mystring = "My name is"
 name = "James"
 surname = "Ong"
 age = 21
-print(mystring, name)
+print(mystring, name) # Output: "My name is James Ong"
     
 # TAKE NOTE THAT '+' can only be used to concatenate data of same type together
 # This is why the following line will fail
-print("My age is" + " " + age) 
+print("My age is" + " " + age) # Output: <y age is 21"
 
 # This works, but what if you have a lot of strings to string together (punneddd)
 # There are special placeholders you can use
@@ -208,7 +208,7 @@ print("My name is {}, my surname is {} and I am {} years old.".format(name, surn
 
 Stripping is the removal of white-space from the string from either ends of the string
 
-Splitting returns a list of the sub-string elements after they have been split into their sub-strings by the given split character
+Splitting returns a **list** of the sub-string elements after they have been split into their sub-strings by the given split character.
 
 ```Python
 mystring = "I am a boy  " # Note the trailing white space
@@ -261,7 +261,7 @@ There's a handy function for that! Introducing '.replace()'
 # Replace takes in 2 string arguments (x, y). NOTE THAT THEY ARE CASE-SENSITIVE!!
 # x = the string to look out for in your string
 # y = the replacement string
-# Take not that the original string is not touched/edited and has to be reassigned to a variable if   you want to make use of it
+# Take not that the original string is not touched/edited and has to be reassigned to a variable if you want to make use of it
 
 mystring = "jamesong"
 mystring.replace("a", "i")
@@ -269,13 +269,13 @@ print(mystring) # Notice that the string is still the same?
 
 # Reassignment
 mystring2 = mystring.replace("a", "i") 
-print(mystring2)
+print(mystring2) # Output: "jimesong"
 
 # MAX REPLACEMENT
-# Replace takes in one more optional input that tells the maximum number of times to replace a 	     string character by
+# Replace takes in one more optional input that tells the maximum number of times to replace a string character by
 mystring = "yayyy"
 mystring3 = mystring.replace("y", "s", 2)
-print(mystring3)
+print(mystring3) # Output: "sassy"
 ```
 
 
@@ -291,20 +291,33 @@ Think of data collections like a container, in which you can store the above men
 Lists are one of the more common data collection types.
 
 ```python
-# How do we instantiate a list?
+# How do we instantiate/make a list?
 mylist = [] # This line creates an empty list that you can do stuff to later **KIV**
 print(type(mylist))
 
 # Let's say you want to put some elements into a list...
-# A quick way to do so is to use python's inbuilt 'list' function
-quicklist = list((1,2,3,4,5))
-print(quicklist)
-print(type(quicklist))
+# Another way to do so is to use python's inbuilt 'list' function
+quicklist = list((1,2,3,4,5)) # Note the double brackets
+print(quicklist) # Output: [1,2,3,4,5]
+print(type(quicklist)) # Output: List
+
+# You can list on a string
+my_str = "abc"
+list_string = list(my_str) 
+print(list_string) # Output: ["a", "b", "c"]
 ```
 
 #### List Methods
 
 There are like a ton of list methods -- too many to list (punned). But here are some that are useful:
+
+##### Indexing
+
+```python
+# 'index' returns the index of the input. IF it exists in the list.
+list1 = [1,2,3,4,5]
+list1.index(3) # This gives 2
+```
 
 ##### Retrieving of elements
 
@@ -319,6 +332,8 @@ print(list1[-1]) #What do you think this does?
 ```
 
 ##### List slicing
+
+This is similar to [string slicing](#Slicing of Strings).
 
 ```python
 # What about list-slicing?
@@ -372,14 +387,6 @@ print(removed)
 print(list1)
 ```
 
-##### Indexing
-
-```python
-# 'index' returns the index of the input. IF it exists in the list.
-list1 = [1,2,3,4,5]
-list1.index(3) # This gives 2
-```
-
 ##### Replacing
 
 Since a list is mutable - which means you can freely change the data stored within, one can easily use list as an update log.
@@ -388,7 +395,7 @@ Since a list is mutable - which means you can freely change the data stored with
 list1 = [1,2,3,4,5]
 # Lets say you want to change the number 3 to a 10, you can do it by:
 list1[2] = 10
-print(list1)
+print(list1) # Output: [1, 2, 10, 4, 5]
 ```
 
 ##### Count
@@ -396,7 +403,7 @@ print(list1)
 ```python
 # 'count' gives the number of occurences of the element appearing in the list
 list1 = [1,2,3,4,5,2,5,2,5,6,5]
-print(list1.count(5)) #This gives 3-the number of occurences of the element 5 in the list
+print(list1.count(5)) # This gives 3-the number of occurences of the element 5 in the list
 ```
 
 ##### Sort
@@ -409,7 +416,12 @@ print(list1)
 # Try this!
 list2 = [1,5,2,7,2,543,72,34,702]
 list2.sort(reverse=True) # What do you think this additional input does?
-print(list2) # Verify your guess here!
+print(list2) # Verify your guess here! 
+
+# For alphabets / words,
+mylist = ["a", "A", "B", "b", "c"]
+mylist.sort()
+print(mylist) # Output: ["A", "B", "a", "b", "c"]
 ```
 
 ##### Reverse
@@ -460,11 +472,8 @@ uneven_squares = [x**2 for x in range(10) if x % 2]
 uneven_squares = []
 for i in range(10):
     if i % 2:
-        uneven_squares.append(x**2)
-        
+        uneven_squares.append(i**2)        
 ```
-
-
 
 ### Tuples
 
@@ -475,8 +484,7 @@ Immutable is a property that prevents edits! Thus tuple values are very useful f
 ```python
 # This demonstrates the immutability of tuples
 mytuple = (1,2)
-mytuple[0] = 3 # An error would be returned as tuples are immutable and do not allow for item 				    assignment
-
+mytuple[0] = 3 # An error would be returned as tuples are immutable and do not allow for item assignment
 ```
 
 #### Tuple Methods
@@ -499,7 +507,7 @@ a, b = mytuple
 # b = (2, 3)
 ```
 
-This is called unpacking and can also be done for [lists](#Lists).
+This is called [unpacking](Argument unpacking) and can also be done for [lists](#Lists). 
 
 ##### Concatenation
 
@@ -523,14 +531,22 @@ print(mytuple.count(2)) # This prints 3, as there are 3 occurences of 2s.
 
 ### Dictionary
 
-A dictionary is a data collection type that has the structure of key - value. These 2 come in pairs. You use each unique "key" to access the data stored in the corresponding value. Take note that keys are UNIQUE, MUST BE A STRING and cannot be repeated in the dictionary! 
+A dictionary is a data collection type that has the structure of key - value. These 2 come in pairs. You use each unique "key" to access the data stored in the corresponding value. Take note that keys are **UNIQUE** and **cannot be repeated** in the dictionary! 
 
-**If you happen to repeat the keys, only the last occurrence of the key would be taken into consideration!**
+**Example**
 
 ```python
-mydict = {"a": A, "a": B}
+mydict = {"a": "A", "b": "B"}
+print(mydict) 
+```
+
+**However, **
+
+```python
+# If you happen to repeat the keys, only the last occurrence of the key 
+# would be taken into consideration!
+mydict = {"a": "A", "a": "B"}
 print(mydict)
-print(mydict.values())
 ```
 
 **Values can be any kind of data format**
@@ -617,8 +633,6 @@ list_of_dicts = [{1: 1, 2: 2},
 {3: 3, 4: 4}]
 ```
 
-
-
 ## Loops
 
 Loops are basically an iterative operation. What this means is that it allows you to run a block of code a set number of times or an infinite number of times (conditionally of course).
@@ -628,6 +642,8 @@ Loops are basically an iterative operation. What this means is that it allows yo
 For loops are finite loops that repeat themselves for the user specified interval
 
 #### Format
+
+Here is how you use a for loop:
 
 ```python
 """
@@ -642,7 +658,7 @@ B is the iterable object which you loop through
 ```python
 # For instance I would like to print the numbers from 1 to 10
 # Instead of writing the print statement 10 times, I can simplify the process by:
-for num in range(1, 11): # range is an inbuilt function in python that takes in 2 integer 								 parameters, the starting num and the ending num. Take note that it only 						  iterates up till the number before the ending num - in this case: 10.
+for num in range(1, 11): # Range is an inbuilt function in python that takes in 2 integer 								 parameters, the starting num and the ending num. Take note that it only 						  iterates up till the number before the ending num - in this case: 10.
 	print(num)
     
 # We can do the same for a list also
@@ -706,7 +722,6 @@ while run:
 		run = False # This line will help u break out of the while loop
         # Alternatively you can also use the break keyword
         # break
-		
 ```
 
 ## Conditionals
@@ -721,17 +736,16 @@ Basically an if-else block is a series of blocks of code that **run only** when 
 given_list = ["hi", "james", "watermelon", "basketball", "torch", "temple"]
 keep_list = []
 for word in given_list:
-    	if len(word) <= 6:
+    	if len(word) <= 6: # len is a useful function for counting the length of the element
             keep_list.append(word)
  print(keep_list)
-
 ```
 
 Elif, short for else-if, is used within an if-else block of code, when you have multiple conditions (ie. more than 2 choices/options)
 
 ```python
 # Here's an example
-# Let's say you have a list of numbers that are integers, and you want to sort them into the         following lists.
+# Let's say you have a list of numbers that are integers, and you want to sort them into the following lists.
 num_list = [-5, 5, 3, 8, 10, -9, 12, -17, -4]
 less_than_5 = []
 more_than_8 = []
@@ -740,12 +754,13 @@ others = []
 # Firstly you set up a loop
 for num in num_list:
     if num > 8: # For num more than 8
-		more_than_8.append(num) # Here you append the num that meets the condition > 8 to the 								    corresponding list - more_than_8
+		more_than_8.append(num) # Here you append the num that meets the condition > 8 to the corresponding list - more_than_8
+        
     elif num < 5: # For num less than 5
-        less_than_5.append(num) # Here you append the num that meets the condition < 5 to the 								   corresponding list - less_than_5
+        less_than_5.append(num) # Here you append the num that meets the condition < 5 to the corresponding list - less_than_5
         
     else: # For any other case
-        others.append(num) # For num that dont fit the above specified conditions, they get 							   appended to this list - others
+        others.append(num) # For num that dont fit the above specified conditions, they get appended to this list - others
 ```
 
 ### Connectors
@@ -754,7 +769,7 @@ One can employ multiple conditional checks within if,elif,else. This is handy as
 
 #### AND
 
-Recall set-theory in math? AND is basically the same as asking for the **intersection** of 2(or more!) venn-diagrams. It requests for elements that are true for the same conditional checks.
+Recall set-theory in math? AND is basically the same as asking for the **intersection** of 2(or more!) venn-diagrams. It requests for elements that are True for the same conditional checks.
 
 Consider the following case:
 
@@ -809,8 +824,6 @@ some_bool = False
 print (not some_bool) # prints True
 ```
 
-
-
 ## Functions
 
 One may ask, what is the difference between Functions and Methods? Well, a method is tied down to specific object, and can only be used on that specific object type. For instance, list.sort(), you cannot apply a .sort() method onto a string object. However, you can use the built-in sorted() function to sort both list and string objects
@@ -855,6 +868,52 @@ def add2num(num1, num2):
 print(add2num(5, 7)) # This should return 12!
 ```
 
+You can also assign your function to a variable (*not sure why you would do that if you have given your function a good, sensible name though*).
+
+`a = add2num`
+
+**Note that this is not the same as a = add2num()!**
+
+One can than apply the above function simply by
+
+```python
+a = add2num
+a(1,2)
+# Gives 3
+```
+
+#### Lambda 
+
+Python has a lightweight function declaration method. The function declared using `lambda` is anonymous, but you can still assign it to a variable like normal functions.
+
+Here's an example:
+
+```python
+# Squaring function
+lambda x: x*x # Generator Object
+
+# Supports assigning too
+a = lambda x: x*x
+a(2) # Returns 4
+```
+
+#### Name
+
+A function's name - *what goes after* `def`, can be retrieved using the magic method `.__name__` 
+
+#### Docstring
+
+Docstring is just a helpful description you can include in the declaration of your functions within `""" `. It is usually a one-liner, but feel free to extend if required.
+
+```python
+def myfunc():
+	""" Here is the func description """
+	print ("Yo")
+    
+print (myfunc.__doc__)
+# Here is the func description
+```
+
 ### Built-in-functions
 
 Python has a couple of useful built-in-functions. While there are too many to cover, the following are some of the useful built-in-functions to keep at your finger-tips!
@@ -869,8 +928,6 @@ To use this function, simply call 'print(*what you want to print*)'
 # print accepts one input 
 print("james")
 ```
-
-
 
 #### Range
 
@@ -912,20 +969,18 @@ for num in range(10, 0, -1):
 print(list3)
 ```
 
-#### Sum,Max, Min, Mean
+#### Sum,Max, Min
 
 ```python
 # You can sum a collection of numbers by using the function sum()
 list1 = [1,2,3,4,5]
 summation = sum(list1)
-print(summation)
+print(summation) # 15
 
 # If you have a list or tuple of numbers, you can easily obtain its max/min values
 list1 = [1,2,3,-10,3.5]
 print(max(list1))
 print(min(list1))
-
-
 ```
 
 #### Length (len)
@@ -949,7 +1004,9 @@ print(len(mydict))
 #### Sorted
 
 ```python
-# Sorted is a generalised function that takes in data and sorts them in order. It can take in         either strings, list of numbers or strings, tuples and even dicts, and returns a sorted list.
+# Sorted is a generalised function that takes in data and sorts them in order. It can take in 
+# either strings, lists (of numbers and/or strings), tuples and even dicts, and returns a 
+# sorted list.
 mystring = "james"
 print(sorted(mystring))
 
@@ -960,12 +1017,13 @@ mylist2 = [1,4,9,-2,-5]
 print(sorted(mylist2))
 
 mytuples = (1,5,2,8)
-print(sorted(mytuples)) # Note that the tuple is not changed - it's immutable. Only its elements 						 gets sorted and returned as a list
+print(sorted(mytuples)) # Note that the tuple is not changed - it's immutable. Only its elements gets sorted 
+					  # and returned as a list
 ```
 
 Now that you know the basics of the function sorted(), lets take on more advanced sorting tips and tricks!
 
-sorted() can take in another parameter, termed "key", which allows for the user to specify a function to sort by.
+`sorted()` can take in another parameter, termed "key", which allows for the user to specify a function to sort by.
 
 Consider the following cases!
 
@@ -987,9 +1045,118 @@ sorted_data = sorted(data, key = x:x[2]) # reverse is False by default!
 sorted_data = sorted(data, key = x:x[2], reverse=True)
 ```
 
+#### Map & Zip
+
+`map(function, iterable, ...<additional iterables>...)` returns an iterator (generator) , that applies a function to each item of the iterable, yielding the results. If additional iterable arguments are passed, the function will be applied to the items of the iterables in parallel. 
+
+*Note: Of course, this means that the iterator will stop when the shortest iterable is exhausted.*
+
+`zip(*iterables)` returns an iterator of tuples, where the i^th^ tuple contains the i^th^ element from each of the argument sequences or iterables.  
+
+*Note: Of course, this means that the iterator will stop when the shortest iterable is exhausted.*
+
+```python
+# NOTE: list is used to print out the generator items. 
+
+# Map that adds 2 to each item
+list(map(lambda x: x+2, [1, 2, 3]))
+# Returns [3, 4, 5]
+
+# Zip that strings together 2 lists to tuples
+list(zip([1, 2], [3, 4]))
+# Returns [(1, 3), (2, 4)]
+```
+
+#### Filter
+
+`filter(function, iterable)` constructs an iterator from elements of the iterable, for which the function returns `True`. In this case, the function serves as a **sieve** that removes unwanted elements.
+
+```python
+# Example to remove odd numbers
+# AKA only even nums return TRUE
+nums = [1, 2, 3, 4, 5, 6]
+print(list(filter(lambda x: not x%2, nums)))
+
+# Odd nums can be returned by simply
+print(list(filter(lambda x: x%2, nums))) # Recall that 1 == True, 0 == False :D
+```
+
 #### Yield
 
-Yield is a keyword that is used like return, except that a generator is returned. 
+Yield is a keyword that is used like return, except that a generator is returned. This allows users to suspend and resume their states between each call to retrieve the result.
+
+Lets take a look at the difference between a generator with a normal function approach.
+
+```python
+def get_squares(n):
+    return [x ** 2 for x in range(n)]
+print(get_squares(10))
+# Returns [1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+def get_squares_gen(n):
+    for x in range(n):
+        yield x ** 2
+
+print(get_squares_gen(10)) # This would give a generator object
+
+# We make use of the keyword next to iterate through the generator object
+# Otherwise a for loop works as well~
+squares = get_squares_gen(4)
+print (next(squares)) # prints: 0
+print (next(squares)) # prints: 1
+print (next(squares)) # prints: 4
+print (next(squares)) # prints: 9
+
+# The following will raise the error StopIteration, in which the generator is exhausted.
+print (next(squares))
+```
+
+**It is highly recommended to use generator functions whenever possible, especially for complicated functions **
+
+A reason is that a generator function would be able to start the computation and give you back the first calculation - you don't have to **wait for the entirety of a normal function computation**.
+
+Secondly, generators take up less memory space - compared to data structures like lists, tuples, etc. However, in terms of *speed*, generators are slower than comprehensions. This is because, generators need to passed through the `list()` constructor. 
+
+*Did you know:* `next` is actually a magic method related to the generator class. Read up more [here](#Magic Methods).
+
+Now, let's say you have an infinite generator. How do you control it to stop at a certain point?
+
+```python
+stop = False
+def counter(start = 0):
+    n = start 
+    while not stop:
+        yield n
+        n += 1
+        
+c = counter()
+print(next(c))
+print(next(c))
+stop = True
+print(next(c)) # Raises StopIteration
+stop = False
+print(next(c))
+```
+
+While the above method is viable, we can *employ* the use of a `send` method. It feeds a value to the generator which resumes the execution. 
+
+```python
+# send method for generators
+def counter(start=0):
+    n = start
+    while True:
+        result = yield n 
+        print(type(result), result)
+        if result == "Q":
+            break
+		n += 1
+        
+c = counter()
+print(next(c))
+print(c.send("Wow!"))
+print(next(c))
+print(c.send("Q")) # Stops the infinite while loop
+```
 
 ### Tips and Tricks
 
@@ -1072,9 +1239,94 @@ def add2num(num1, num2):
         print("Use only number inputs")
 ```
 
+### Decorators 
+
+Let's just say decorators are just a *sugary way* to illustrate or encapsulate the idea of chaining functions.
+
+Let's say I have the following:
+
+```python
+def my_decor(func):
+    def wrapper():
+        print("Before {}".format(func.__name__)
+        func()
+        print("After {}"format(func.__name__))
+              
+    return wrapper
+              
+def myfunc():
+	print("Hi")
+             
+newfunc = my_decor(myfunc)
+newfunc()
+# Basically what the above 2 lines are: my_decor(myfunc)()
+# Before myfunc
+# Hi
+# After myfunc
+```
+
+*In Other Words,*decorators wrap a function, modifying its behavior.
+
+`Python` has a simpler way of applying decorators - we make use of the `@` symbol. The following example does the same as the above code. 
+
+```python
+def my_decor(func):
+    def wrapper():
+        print("Before {}".format(func.__name__)
+        func()
+        print("After {}"format(func.__name__))
+              
+    return wrapper
+              
+@my_decor
+def myfunc():
+	print("Hi")
+              
+myfunc()
+# Before myfunc
+# Hi
+# After myfunc
+```
+
+*Note:* The inner function `wrapper` (in this case), can be named whatever you want. This generic name is usually used to denote decorator usage.
+
+Decorators can be made to accept arguments as well (*when wrapping more complicated functions of course*). We can do it using `*args` or `**kwargs`. An example has been included below. 
+
+```python
+from functools import wraps
+def do_twice(func):
+    @wraps(func)
+	def wrapper_do_twice(*args, **kwargs):
+		func(*args, **kwargs)
+		func(*args, **kwargs)
+	return wrapper_do_twice
+
+@do_twice
+def newfunc(x, y):
+    print (x+y)
+    
+newfunc(1, 2)
+# 3
+# 3
+```
+
+If you notice, we have `from functools import wraps` and `@wraps(func)`which are new in this code block - fret not! It just allows the function we are gonna decorate (`newfunc`) to retain its original [name](#Name) and [docstring](#Docstring) [ check using `newfunc.__name__` and `newfunc.__doc__`]. 
+
+Read up more about decorators [here](https://realpython.com/primer-on-python-decorators/#simple-decorators). 
+
 ## Class
 
-Python is an object-oriented
+Python is an object-oriented programming language - everything in python is an object. 
+
+> Object-oriented programming (OOP) is a programming paradigm based on the
+> concept of "objects", which are data structures that contain data, in the form of
+> attributes, and code, in the form of functions known as methods. A distinguishing
+> feature of objects is that an object's method can access and often modify the data
+> attributes of the object with which they are associated (objects have a notion of
+> "self"). In OO programming, computer programs are designed by making them out
+> of objects that interact with one another.
+
+`classes`are used in object creation, when objects are created by a class, they inherit the class attributes and methods. 
 
 ### What is a class?
 
@@ -1127,11 +1379,23 @@ print(friend1.weight)
 
 ### Class Methods
 
-#### Init
+#### Magic Methods
+
+These are special methods we can define within the class, and are enclosed within double underscores (`__<method name>__`).
+
+A common magic method which is used to initialize the object instance is `__init__`. This magic method runs right after the object is created.
+
+You can then call the magic method by `<method name> (<object instance>)`.
 
 #### Functions / Methods 
 
+This are the related functions [known as methods], that are usable by objects we instanced from our class. 
+
+We define such methods with the normal function declaration, except they must minimally take in a `self` parameter. For instance `def newmethod(self):`.
+
 #### Instantiation
+
+This is as easy as `obj = <class name>()`.
 
 ## Modules
 
